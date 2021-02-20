@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.mascota',
+    'apps.publicacion',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'AdopMascotas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.dirname(BASE_DIR),'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,27 +77,27 @@ WSGI_APPLICATION = 'AdopMascotas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'AdopMascotas',
-        'USER': 'user@myserver',
-        'PASSWORD': 'password',
-        'HOST': 'myserver.database.windows.net',
-        'PORT': '',
-
-        'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',
-        },
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'sql_server.pyodbc',
+#         'NAME': 'AdopMascotas',
+#         'USER': 'user@myserver',
+#         'PASSWORD': 'password',
+#         'HOST': 'myserver.database.windows.net',
+#         'PORT': '',
+
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 13 for SQL Server',
+#         },
+#     },
+# }
 
 # set this to False if you want to turn off pyodbc's connection pooling
 DATABASE_CONNECTION_POOLING = False
@@ -120,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
 USE_I18N = True
 
@@ -135,3 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIR = (os.path.join(os.path.dirname(BASE_DIR),'static'),)
+
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),'media')
