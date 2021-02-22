@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.mascota',
     'apps.publicacion',
     'apps.usuario',
+    'apps.adopcion',
 ]
 
 MIDDLEWARE = [
@@ -77,27 +78,26 @@ WSGI_APPLICATION = 'AdopMascotas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'sql_server.pyodbc',
-#         'NAME': 'AdopMascotas',
-#         'USER': 'user@myserver',
-#         'PASSWORD': 'password',
-#         'HOST': 'myserver.database.windows.net',
-#         'PORT': '',
-
-#         'OPTIONS': {
-#             'driver': 'ODBC Driver 13 for SQL Server',
-#         },
-#     },
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'AdopMascotas',
+        'USER': 'admin',
+        'PASSWORD': '1234',
+        'HOST': 'localhost\SQLEXPRESS',
+        'PORT': '1433',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        },
+    },
+}
 
 # set this to False if you want to turn off pyodbc's connection pooling
 DATABASE_CONNECTION_POOLING = False
