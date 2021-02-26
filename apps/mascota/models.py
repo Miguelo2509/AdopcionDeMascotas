@@ -5,6 +5,9 @@ from apps.usuario.models import Usuario
 class Vacuna(models.Model):
 	nombre=models.CharField(max_length=30)
 
+	def __str__(self):
+		return '{}'.format(self.nombre)
+
 class Mascota(models.Model):
 	nombre = models.CharField(max_length=30)
 	especie = models.CharField(max_length=30)
